@@ -13,8 +13,11 @@ let cart = createSlice({
       });
       state[number].count++;
     },
+    addItem(state, action) {
+      state.push(action.payload);
+    },
   },
 });
 
-export let { addCount } = cart.actions;
+export let { addCount, addItem } = cart.actions;
 export default cart;
