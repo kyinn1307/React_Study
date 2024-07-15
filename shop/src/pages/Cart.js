@@ -26,7 +26,7 @@ function Cart() {
                 {" "}
                 <button
                   onClick={() => {
-                    dispatch(addCount(i));
+                    dispatch(addCount(cart[i].id));
                   }}
                 >
                   +
