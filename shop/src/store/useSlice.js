@@ -1,20 +1,20 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-let basket = createSlice({
-  name: "basket",
+let cart = createSlice({
+  name: "cart",
   initialState: [
     { id: 0, name: "White and Black", count: 2 },
     { id: 2, name: "Grey Yordan", count: 1 },
   ],
   reducers: {
-    changeName(state) {
-      state[0].name = "park";
-    },
-    increase(state, action) {
-      state[action.payload].count++;
+    addCount(state, action) {
+      let number = state.findIndex((a) => {
+        return a.id === action.payload;
+      });
+      state[number].count++;
     },
   },
 });
 
-export let { changeName, increase } = basket.actions;
-export default basket;
+export let { addCount } = cart.actions;
+export default cart;

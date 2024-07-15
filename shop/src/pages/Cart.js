@@ -1,21 +1,12 @@
 import { Table } from "react-bootstrap/";
 import { useSelector, useDispatch } from "react-redux";
-import { changeName } from "../store/useSlice";
-import { increase } from "../store/useSlice";
+import { addCount } from "../store/useSlice";
 
 function Cart() {
-  let stock = useSelector((state) => state.basket);
+  let cart = useSelector((state) => state.cart);
   let dispatch = useDispatch();
   return (
     <div>
-      <button
-        onClick={() => {
-          dispatch(changeName());
-        }}
-      >
-        버튼
-      </button>
-
       <Table>
         <thead>
           <tr>
@@ -26,25 +17,23 @@ function Cart() {
           </tr>
         </thead>
         <tbody>
-          {stock.map((a, i) => {
-            return (
-              <tr>
-                <td>{stock[i].id}</td>
-                <td>{stock[i].name}</td>
-                <td>{stock[i].count}</td>
-                <td>
-                  {" "}
-                  <button
-                    onClick={() => {
-                      dispatch(increase(i));
-                    }}
-                  >
-                    +
-                  </button>
-                </td>
-              </tr>
-            );
-          })}
+          {cart.map((a, i) => (
+            <tr>
+              <td>{cart[i].id}</td>
+              <td>{cart[i].name}</td>
+              <td>{cart[i].count}</td>
+              <td>
+                {" "}
+                <button
+                  onClick={() => {
+                    dispatch(addCount(i));
+                  }}
+                >
+                  +
+                </button>
+              </td>
+            </tr>
+          ))}
         </tbody>
       </Table>
     </div>
