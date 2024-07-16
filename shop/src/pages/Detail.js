@@ -91,7 +91,7 @@ function Detail(props) {
                 addItem({
                   id: 1,
                   name: "Red Knit",
-                  count: "3",
+                  count: 1,
                 })
               )
             }

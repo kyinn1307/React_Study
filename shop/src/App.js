@@ -1,6 +1,6 @@
 import "./App.css";
 import { Container } from "react-bootstrap";
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route, Link, useNavigate } from "react-router-dom";
 import { useState, createContext } from "react";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -15,9 +15,13 @@ import Cart from "./pages/Cart.js";
 export let Context1 = createContext();
 
 function App() {
+  const navigate = useNavigate();
   let [shoes, setShoes] = useState(Data);
   let [stock, setStock] = useState([10, 11, 12]);
 
+  function handleProductClick(productId) {
+    navigate(`detail/${productId - 1}`);
+  }
   function Shoes(props) {
     return (
       <div>
@@ -26,9 +30,11 @@ function App() {
             src={"https://codingapple1.github.io/shop/shoes" + props.i + ".jpg"}
             width="80%"
             alt={"신발"}
-          ></img>
+            onClick={() => handleProductClick(props.i)}
+            style={{ cursor: "pointer" }}
+          />
           <h4>{props.shoes.title}</h4>
-          <p>{props.shoes.price}</p>
+          <p>{props.shoes.price}원</p>
         </Col>
       </div>
     );
