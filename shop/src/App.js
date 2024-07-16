@@ -64,7 +64,7 @@ function App() {
   return (
     <div>
       <Menu />
-      {/* <Button /> */}
+      <Button />
       <Routes>
         <Route
           path="/"

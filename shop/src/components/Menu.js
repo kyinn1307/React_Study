@@ -20,7 +20,7 @@ function Menu() {
           </Nav.Link>
           <Nav.Link
             onClick={() => {
-              navigate("/detail/1");
+              navigate("/detail/0");
             }}
           >
             Detail

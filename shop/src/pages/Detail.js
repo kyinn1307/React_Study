@@ -11,7 +11,6 @@ function Detail(props) {
   let dispatch = useDispatch();
   // let { stock } = useContext(Context1);
   let result = props.shoes.find((result) => result.id == id);
-
   // function TabContent(props) {
   //   let [fade, setFade] = useState("");
   //   useEffect(() => {
@@ -68,7 +67,6 @@ function Detail(props) {
       </Nav> */}
       {/* <TabContent tab={tab} />
       <div> {stock[tab]} </div> */}
-
       <div className="row">
         <div className="col-md-6">
           <img
@@ -89,8 +87,8 @@ function Detail(props) {
             onClick={() =>
               dispatch(
                 addItem({
-                  id: 1,
-                  name: "Red Knit",
+                  id: result.id,
+                  name: result.title,
                   count: 1,
                 })
               )
