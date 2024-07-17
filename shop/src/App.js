@@ -2,7 +2,6 @@ import "./App.css";
 import { Container } from "react-bootstrap";
 import { Routes, Route, Link, useNavigate } from "react-router-dom";
 import { useState, createContext } from "react";
-import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -11,7 +10,8 @@ import Menu from "./components/Menu.js";
 import Detail from "./pages/Detail.js";
 import EventPage from "./pages/EventPage.js";
 import Cart from "./pages/Cart.js";
-
+import AddButton from "./components/AddButton.js";
+import SortButton from "./components/SortButton.js";
 export let Context1 = createContext();
 
 function App() {
@@ -22,6 +22,7 @@ function App() {
   function handleProductClick(productId) {
     navigate(`detail/${productId - 1}`);
   }
+
   function Shoes(props) {
     return (
       <div>
@@ -40,31 +41,13 @@ function App() {
     );
   }
 
-  function Button() {
-    return (
-      <button
-        onClick={() => {
-          axios
-            .get("https://codingapple1.github.io/shop/data2.json")
-            .then((ok) => {
-              console.log(ok.data);
-              let copy = [...Data, ...ok.data];
-              setShoes(copy);
-            })
-            .catch(() => {
-              console.log("실패요");
-            });
-        }}
-      >
-        신발추가
-      </button>
-    );
-  }
-
   return (
     <div>
       <Menu />
-      <Button />
+      <div className="button-container">
+        <AddButton setShoes={setShoes} />
+        <SortButton setShoes={setShoes} />
+      </div>
       <Routes>
         <Route
           path="/"
@@ -72,7 +55,7 @@ function App() {
             <Container>
               <Row md={3}>
                 {shoes.map((a, i) => {
-                  return <Shoes shoes={shoes[i]} i={i + 1}></Shoes>;
+                  return <Shoes shoes={shoes[i]} i={shoes[i].id + 1}></Shoes>;
                 })}
               </Row>
             </Container>
