@@ -1,22 +1,35 @@
 import styled from "styled-components";
 import React, { useRef, useEffect, useState } from "react";
 import Speech from "./components/Speech";
+import { useInView } from "react-intersection-observer";
 
 const Body = styled.div`
   background-color: black;
   height: 6000px;
   font-family: "nanumsquare";
 `;
-const Box = styled.div`
+let Box = styled.div`
   padding-top: 1000px;
   color: white;
   text-align: center;
   opacity: ${(props) => props.opacity};
-  transition: all 0.5s;
+  transition: all 2s;
 `;
 const Video = styled.video`
   transform: scaleX(-1); /* This will flip the video horizontally */
 `;
+
+let AniBox = (props) => {
+  const { ref, inView } = useInView({
+    threshold: 0.01,
+  });
+
+  return (
+    <Box ref={ref} opacity={inView ? 1 : 0}>
+      {props.children}
+    </Box>
+  );
+};
 
 const Voice = ({ value, handleInput, handleButton }) => {
   return (
@@ -78,11 +91,11 @@ function App() {
         handleInput={handleInput}
         handleButton={handleButton}
       />
-      {sentence.map((a) => {
+      {sentence.map((a, i) => {
         return (
-          <Box>
+          <AniBox key={i}>
             <h1>{a}</h1>
-          </Box>
+          </AniBox>
         );
       })}
     </Body>
