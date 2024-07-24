@@ -2,9 +2,10 @@ import styled from "styled-components";
 import React, { useRef, useEffect, useState } from "react";
 import Speech from "./components/Speech";
 import { useInView } from "react-intersection-observer";
+import Record from "./components/Record";
 
 const Body = styled.div`
-  background-color: black;
+  // background-color: black;
   height: 6000px;
   font-family: "nanumsquare";
 `;
@@ -86,6 +87,7 @@ function App() {
   return (
     <Body>
       {/* <Video ref={videoRef}></Video> */}
+      <Record />
       <Voice
         value={value}
         handleInput={handleInput}
