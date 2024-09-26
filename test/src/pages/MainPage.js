@@ -9,11 +9,11 @@ export const MainPage = () => {
     <>
       <div>Main</div>
 
-      {/* <NewWindowPopup content={"https://www.youtube.com/embed/dQw4w9WgXcQ"} /> */}
-      {/* 인스타그램 나중에 볼 게시물 페이지로 이동 */}
-      {/* <InstagramSavedPosts />
+      <NewWindowPopup content={"https://www.youtube.com/embed/dQw4w9WgXcQ"} />
+      인스타그램 나중에 볼 게시물 페이지로 이동
+      <InstagramSavedPosts />
       <InstagramEmbed />
-      <InstagramEmbedPost /> */}
+      <InstagramEmbedPost />
     </>
   );
 };
